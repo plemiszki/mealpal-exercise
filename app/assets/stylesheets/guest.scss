@@ -1,0 +1,14 @@
+.guest {
+    margin: 0 auto;
+    max-width: 414px;
+    padding: 15px;
+    text-align: center;
+
+    &__title {
+      margin-bottom: 32px;
+    }
+
+    &__subtitle {
+      line-height: 1.5;
+    }
+  }
