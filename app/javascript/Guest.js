@@ -1,9 +1,11 @@
 import React, { useState } from "react";
+import { Button } from "@mui/material";
 
 const Guest = () => {
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
-  const [showThankYou, setShowThankYou] = useState(true);
+  const [sendingRequest, setSendingRequest] = useState(false);
+  const [showThankYou, setShowThankYou] = useState(false);
 
   if (showThankYou) {
     return (
@@ -22,6 +24,17 @@ const Guest = () => {
       <p className="guest__subtitle">
         Please provide your full name and phone number.
       </p>
+      <Button
+        variant="contained"
+        color="primary"
+        sx={{ textTransform: "none" }}
+        onClick={() => {
+          setSendingRequest(true);
+        }}
+        loading={sendingRequest}
+      >
+        View menu
+      </Button>
     </div>
   );
 };
