@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button } from "@mui/material";
+import { Button, Stack, Typography } from "@mui/material";
 
 const Guest = () => {
   const [name, setName] = useState("");
@@ -19,15 +19,32 @@ const Guest = () => {
   }
 
   return (
-    <div className="guest">
-      <h1 className="guest__title">Welcome</h1>
-      <p className="guest__subtitle">
+    <Stack
+      direction="column"
+      sx={{
+        margin: "auto",
+        mt: 2,
+        backgroundColor: "white",
+        maxWidth: 414,
+        padding: "20px",
+        textAlign: "center",
+        borderRadius: 1,
+      }}
+    >
+      <Typography sx={{ fontWeight: 700, fontSize: 32, mb: 2 }}>
+        Welcome
+      </Typography>
+      <Typography sx={{ display: "block", mb: 2 }}>
         Please provide your full name and phone number.
-      </p>
+      </Typography>
       <Button
         variant="contained"
         color="primary"
-        sx={{ textTransform: "none" }}
+        sx={{
+          textTransform: "none",
+          borderRadius: 100,
+          backgroundColor: "darkblue",
+        }}
         onClick={() => {
           setSendingRequest(true);
         }}
@@ -35,7 +52,7 @@ const Guest = () => {
       >
         View menu
       </Button>
-    </div>
+    </Stack>
   );
 };
 
