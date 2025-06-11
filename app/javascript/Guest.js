@@ -3,7 +3,9 @@ import { Button, Stack, TextField, Typography } from "@mui/material";
 
 const Guest = () => {
   const [name, setName] = useState("");
+  const [nameError, setNameError] = useState(false);
   const [phone, setPhone] = useState("");
+  const [phoneError, setPhoneError] = useState(false);
   const [sendingRequest, setSendingRequest] = useState(false);
   const [showThankYou, setShowThankYou] = useState(false);
 
@@ -43,6 +45,7 @@ const Guest = () => {
         onChange={(e) => setName(e.target.value)}
         variant="outlined"
         sx={{ mb: 2 }}
+        error={nameError}
       />
       <TextField
         label="phone number"
@@ -50,6 +53,7 @@ const Guest = () => {
         onChange={(e) => setPhone(e.target.value)}
         variant="outlined"
         sx={{ mb: 4 }}
+        error={phoneError}
       />
       <Button
         variant="contained"
