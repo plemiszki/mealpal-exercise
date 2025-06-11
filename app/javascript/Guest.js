@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, Stack, Typography } from "@mui/material";
+import { Button, Stack, TextField, Typography } from "@mui/material";
 
 const Guest = () => {
   const [name, setName] = useState("");
@@ -37,6 +37,20 @@ const Guest = () => {
       <Typography sx={{ display: "block", mb: 2 }}>
         Please provide your full name and phone number.
       </Typography>
+      <TextField
+        label="full name"
+        value={name}
+        onChange={(e) => setName(e.target.value)}
+        variant="outlined"
+        sx={{ mb: 2 }}
+      />
+      <TextField
+        label="phone number"
+        value={phone}
+        onChange={(e) => setPhone(e.target.value)}
+        variant="outlined"
+        sx={{ mb: 4 }}
+      />
       <Button
         variant="contained"
         color="primary"
