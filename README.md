@@ -9,12 +9,13 @@ We would like you to complete the feature below by:
 1 - Setting up a component in React to submit full name and phone number with the acceptance criteria below:
 
 - If a user enters a full name (min. two words) and a valid phone number (10 or 11 digits), they should see the success screen with their name.
-- If a user enters a name that has less than two words, they should see an error message (* must be your first and last name)
-- If a user enters a phone number that is invalid, they should see an error message (* numbers only (ex. 1231231234))
+- If a user enters a name that has less than two words, they should see an error message (\* must be your first and last name)
+- If a user enters a phone number that is invalid, they should see an error message (\* numbers only (ex. 1231231234))
 
 Please check out designs file in the root folder.
 
 2 - Create the API endpoint in Rails to receive the data and validate entry before storing it
+
 - If a user submits a valid entry, the API should return a 201 OK response and store the user data in the DB
 - If a user submits an invalid entry, the API should return a 400 response and not store the user data in the DB
 
@@ -36,4 +37,11 @@ rails server -p 3000
 
 ```
 open http://localhost:3000/
+```
+
+## Running Tests
+
+```
+brew install chromedriver
+bundle exec rspec
 ```
