@@ -24,7 +24,7 @@ const postApiData = async ({ body }) => {
   } else {
     const errorData = await response.json();
     const error = new Error("Request failed");
-    error.data = errorData;
+    error.data = errorData.errors;
     throw error;
   }
 };
@@ -70,7 +70,10 @@ const Guest = () => {
       <TextField
         label="full name"
         value={name}
-        onChange={(e) => setName(e.target.value)}
+        onChange={(e) => {
+          setNameError(false);
+          setName(e.target.value);
+        }}
         variant="outlined"
         sx={{ mb: 2 }}
         error={nameError}
@@ -78,7 +81,10 @@ const Guest = () => {
       <TextField
         label="phone number"
         value={phone}
-        onChange={(e) => setPhone(e.target.value)}
+        onChange={(e) => {
+          setPhoneError(false);
+          setPhone(e.target.value);
+        }}
         variant="outlined"
         sx={{ mb: 4 }}
         error={phoneError}
@@ -107,7 +113,13 @@ const Guest = () => {
             })
             .catch((error) => {
               setSendingRequest(false);
-              console.log(error.data);
+              const { data } = error;
+              if (data.name) {
+                setNameError(true);
+              }
+              if (data.phone) {
+                setPhoneError(true);
+              }
             });
         }}
         loading={sendingRequest}
