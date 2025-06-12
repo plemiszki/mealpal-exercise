@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Button, Stack, TextField, Typography } from "@mui/material";
+import { styled } from "@mui/material/styles";
 
 export const getCsrfToken = () => {
   const metaTag = document.querySelector('meta[name="csrf-token"]');
@@ -28,6 +29,16 @@ const postApiData = async ({ body }) => {
     throw error;
   }
 };
+
+const StyledStack = styled(Stack)(() => ({
+  backgroundColor: "white",
+  maxWidth: 414,
+  padding: "20px",
+  textAlign: "center",
+  borderRadius: 1,
+  margin: "auto",
+  marginTop: 16,
+}));
 
 const Guest = () => {
   const [name, setName] = useState("");
@@ -72,41 +83,19 @@ const Guest = () => {
 
   if (showThankYou) {
     return (
-      <Stack
-        direction="column"
-        sx={{
-          margin: "auto",
-          mt: 2,
-          backgroundColor: "white",
-          maxWidth: 414,
-          padding: "20px",
-          textAlign: "center",
-          borderRadius: 1,
-        }}
-      >
+      <StyledStack direction="column">
         <Typography variant="header" sx={{ mb: 2 }}>
           Thank You!
         </Typography>
         <Typography sx={{ mb: 2 }}>
           Thank you for submitting the form {name}.
         </Typography>
-      </Stack>
+      </StyledStack>
     );
   }
 
   return (
-    <Stack
-      direction="column"
-      sx={{
-        margin: "auto",
-        mt: 2,
-        backgroundColor: "white",
-        maxWidth: 414,
-        padding: "20px",
-        textAlign: "center",
-        borderRadius: 1,
-      }}
-    >
+    <StyledStack direction="column">
       <Typography variant="header" sx={{ mb: 2 }}>
         Welcome
       </Typography>
@@ -160,7 +149,7 @@ const Guest = () => {
       >
         View menu
       </Button>
-    </Stack>
+    </StyledStack>
   );
 };
 
