@@ -37,6 +37,13 @@ const Guest = () => {
   const [sendingRequest, setSendingRequest] = useState(false);
   const [showThankYou, setShowThankYou] = useState(false);
 
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      submitForm();
+    }
+  };
+
   const submitForm = async () => {
     setSendingRequest(true);
     postApiData({
@@ -116,6 +123,7 @@ const Guest = () => {
         variant="outlined"
         sx={{ mb: nameError ? 1 : 2 }}
         error={nameError}
+        onKeyDown={handleKeyDown}
       />
       {nameError ? (
         <Typography variant="error" sx={{ mb: 2, textAlign: "right" }}>
@@ -132,6 +140,7 @@ const Guest = () => {
         variant="outlined"
         sx={{ mb: phoneError ? 1 : 4 }}
         error={phoneError}
+        onKeyDown={handleKeyDown}
       />
       {phoneError ? (
         <Typography variant="error" sx={{ mb: 4, textAlign: "right" }}>
