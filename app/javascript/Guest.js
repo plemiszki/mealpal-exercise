@@ -133,7 +133,7 @@ const Guest = () => {
       />
       {phoneError ? (
         <Typography variant="error" sx={{ mb: 4, textAlign: "right" }}>
-          *numbers only (ex. 1231231234)
+          *10 or 11 numbers only (ex. 1231231234)
         </Typography>
       ) : null}
       <Button
@@ -143,6 +143,7 @@ const Guest = () => {
           textTransform: "none",
           borderRadius: 100,
           backgroundColor: "darkblue",
+          py: 1,
         }}
         onClick={submitForm}
         loading={sendingRequest}

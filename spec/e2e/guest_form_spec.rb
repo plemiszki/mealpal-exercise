@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 NAME_ERROR_TEXT = 'must be your first and last name'
-PHONE_ERROR_TEXT ='numbers only (ex. 1231231234)'
+PHONE_ERROR_TEXT ='10 or 11 numbers only (ex. 1231231234)'
 
 describe 'guest_form', type: :feature do
 
