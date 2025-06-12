@@ -45,3 +45,5 @@ open http://localhost:3000/
 brew install chromedriver
 bundle exec rspec
 ```
+
+You may need to give chromedriver access via the "Privacy and Security" section of your system settings.
