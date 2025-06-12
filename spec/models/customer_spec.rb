@@ -30,4 +30,10 @@ RSpec.describe Customer do
       Customer.create!(name: "Elwood Blues", phone: "115556345789")
     end.to raise_error(ActiveRecord::RecordInvalid)
   end
+
+  it 'requires a phone number of numbers only' do
+    expect do
+      Customer.create!(name: "Elwood Blues", phone: "phone")
+    end.to raise_error(ActiveRecord::RecordInvalid)
+  end
 end
