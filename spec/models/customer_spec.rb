@@ -13,6 +13,12 @@ RSpec.describe Customer do
     end.to raise_error(ActiveRecord::RecordInvalid)
   end
 
+  it 'requires a name of at least two words' do
+    expect do
+      Customer.create!(name: "Elwood", phone: "5556345789")
+    end.to raise_error(ActiveRecord::RecordInvalid)
+  end
+
   it 'requires a phone number' do
     expect do
       Customer.create!(name: "Elwood Blues", phone: "")
