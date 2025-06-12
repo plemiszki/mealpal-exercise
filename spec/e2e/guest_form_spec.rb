@@ -1,5 +1,8 @@
 require 'rails_helper'
 
+NAME_ERROR_TEXT = 'must be your first and last name'
+PHONE_ERROR_TEXT ='numbers only (ex. 1231231234)'
+
 describe 'guest_form', type: :feature do
 
   before(:each) do
@@ -27,6 +30,64 @@ describe 'guest_form', type: :feature do
     guest = Guest.first
     expect(guest.name).to eq("Elwood Blues")
     expect(guest.phone).to eq("5556345789")
+  end
+
+  it 'displays an error if the form is submitted with no name' do
+    @phone_field.set('5556345789')
+    @submit_button.click
+
+    expect(page).to have_content(NAME_ERROR_TEXT)
+
+    expect(Guest.count).to eq(0)
+  end
+
+  it 'displays an error if the form is submitted with only one word in the name' do
+    @name_field.set('Elwood')
+    @phone_field.set('5556345789')
+    @submit_button.click
+
+    expect(page).to have_content(NAME_ERROR_TEXT)
+
+    expect(Guest.count).to eq(0)
+  end
+
+  it 'displays an error if the form is submitted with no phone number' do
+    @name_field.set('Elwood Blues')
+    @submit_button.click
+
+    expect(page).to have_content(PHONE_ERROR_TEXT)
+
+    expect(Guest.count).to eq(0)
+  end
+
+  it 'displays an error if the form is submitted with a phone number that is not exclusively numbers' do
+    @name_field.set('Elwood Blues')
+    @phone_field.set('555-634-5789')
+    @submit_button.click
+
+    expect(page).to have_content(PHONE_ERROR_TEXT)
+
+    expect(Guest.count).to eq(0)
+  end
+
+  it 'displays an error if the form is submitted with a phone number that is too short' do
+    @name_field.set('Elwood Blues')
+    @phone_field.set('555634578')
+    @submit_button.click
+
+    expect(page).to have_content(PHONE_ERROR_TEXT)
+
+    expect(Guest.count).to eq(0)
+  end
+
+  it 'displays an error if the form is submitted with a phone number that is too long' do
+    @name_field.set('Elwood Blues')
+    @phone_field.set('115556345789')
+    @submit_button.click
+
+    expect(page).to have_content(PHONE_ERROR_TEXT)
+
+    expect(Guest.count).to eq(0)
   end
 
 end
