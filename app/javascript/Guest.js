@@ -37,6 +37,32 @@ const Guest = () => {
   const [sendingRequest, setSendingRequest] = useState(false);
   const [showThankYou, setShowThankYou] = useState(false);
 
+  const submitForm = async () => {
+    setSendingRequest(true);
+    postApiData({
+      body: {
+        guest: {
+          name,
+          phone,
+        },
+      },
+    })
+      .then(() => {
+        setSendingRequest(false);
+        setShowThankYou(true);
+      })
+      .catch((error) => {
+        setSendingRequest(false);
+        const { data } = error;
+        if (data.name) {
+          setNameError(true);
+        }
+        if (data.phone) {
+          setPhoneError(true);
+        }
+      });
+  };
+
   if (showThankYou) {
     return (
       <Stack
@@ -81,7 +107,7 @@ const Guest = () => {
         Please provide your full name and phone number.
       </Typography>
       <TextField
-        label="full name"
+        label="Full Name"
         value={name}
         onChange={(e) => {
           setNameError(false);
@@ -97,7 +123,7 @@ const Guest = () => {
         </Typography>
       ) : null}
       <TextField
-        label="phone number"
+        label="Phone Number"
         value={phone}
         onChange={(e) => {
           setPhoneError(false);
@@ -120,31 +146,7 @@ const Guest = () => {
           borderRadius: 100,
           backgroundColor: "darkblue",
         }}
-        onClick={async () => {
-          setSendingRequest(true);
-          postApiData({
-            body: {
-              guest: {
-                name,
-                phone,
-              },
-            },
-          })
-            .then(() => {
-              setSendingRequest(false);
-              setShowThankYou(true);
-            })
-            .catch((error) => {
-              setSendingRequest(false);
-              const { data } = error;
-              if (data.name) {
-                setNameError(true);
-              }
-              if (data.phone) {
-                setPhoneError(true);
-              }
-            });
-        }}
+        onClick={submitForm}
         loading={sendingRequest}
       >
         View menu
