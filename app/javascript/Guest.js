@@ -110,7 +110,9 @@ const Guest = () => {
           setName(e.target.value);
         }}
         variant="outlined"
-        sx={{ mb: nameError ? 1 : 2 }}
+        sx={{
+          mb: nameError ? 1 : 2,
+        }}
         error={nameError}
         onKeyDown={handleKeyDown}
       />
