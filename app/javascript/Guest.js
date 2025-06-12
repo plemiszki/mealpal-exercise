@@ -39,12 +39,25 @@ const Guest = () => {
 
   if (showThankYou) {
     return (
-      <div className="guest">
-        <h1 className="guest__title">Thank You!</h1>
-        <p className="guest__subtitle">
+      <Stack
+        direction="column"
+        sx={{
+          margin: "auto",
+          mt: 2,
+          backgroundColor: "white",
+          maxWidth: 414,
+          padding: "20px",
+          textAlign: "center",
+          borderRadius: 1,
+        }}
+      >
+        <Typography sx={{ fontWeight: 700, fontSize: 32, mb: 2 }}>
+          Thank You!
+        </Typography>
+        <Typography sx={{ display: "block", mb: 2 }}>
           Thank you for submitting the form {name}.
-        </p>
-      </div>
+        </Typography>
+      </Stack>
     );
   }
 
@@ -78,6 +91,11 @@ const Guest = () => {
         sx={{ mb: 2 }}
         error={nameError}
       />
+      {nameError ? (
+        <Typography variant="error">
+          *must be your first and last name
+        </Typography>
+      ) : null}
       <TextField
         label="phone number"
         value={phone}
@@ -89,6 +107,9 @@ const Guest = () => {
         sx={{ mb: 4 }}
         error={phoneError}
       />
+      {phoneError ? (
+        <Typography variant="error">*numbers only (ex. 1231231234)</Typography>
+      ) : null}
       <Button
         variant="contained"
         color="primary"
