@@ -1,6 +1,34 @@
 import React, { useState } from "react";
 import { Button, Stack, TextField, Typography } from "@mui/material";
 
+export const getCsrfToken = () => {
+  const metaTag = document.querySelector('meta[name="csrf-token"]');
+  if (metaTag) {
+    return metaTag.getAttribute("content");
+  } else {
+    return null;
+  }
+};
+
+const postApiData = async ({ body }) => {
+  const response = await fetch("/api/v1/guests", {
+    method: "POST",
+    headers: {
+      "x-csrf-token": getCsrfToken(),
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(body),
+  });
+  if (response.status === 201) {
+    return;
+  } else {
+    const errorData = await response.json();
+    const error = new Error("Request failed");
+    error.data = errorData;
+    throw error;
+  }
+};
+
 const Guest = () => {
   const [name, setName] = useState("");
   const [nameError, setNameError] = useState(false);
@@ -63,8 +91,24 @@ const Guest = () => {
           borderRadius: 100,
           backgroundColor: "darkblue",
         }}
-        onClick={() => {
+        onClick={async () => {
           setSendingRequest(true);
+          postApiData({
+            body: {
+              guest: {
+                name,
+                phone,
+              },
+            },
+          })
+            .then(() => {
+              setSendingRequest(false);
+              setShowThankYou(true);
+            })
+            .catch((error) => {
+              setSendingRequest(false);
+              console.log(error.data);
+            });
         }}
         loading={sendingRequest}
       >
