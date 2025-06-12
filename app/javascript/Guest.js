@@ -84,7 +84,7 @@ const Guest = () => {
           borderRadius: 1,
         }}
       >
-        <Typography sx={{ fontWeight: 700, fontSize: 32, mb: 2 }}>
+        <Typography variant="header" sx={{ mb: 2 }}>
           Thank You!
         </Typography>
         <Typography sx={{ mb: 2 }}>
@@ -107,7 +107,7 @@ const Guest = () => {
         borderRadius: 1,
       }}
     >
-      <Typography sx={{ fontWeight: 700, fontSize: 32, mb: 2 }}>
+      <Typography variant="header" sx={{ mb: 2 }}>
         Welcome
       </Typography>
       <Typography sx={{ mb: 2 }}>
