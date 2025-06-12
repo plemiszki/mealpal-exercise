@@ -54,7 +54,7 @@ const Guest = () => {
         <Typography sx={{ fontWeight: 700, fontSize: 32, mb: 2 }}>
           Thank You!
         </Typography>
-        <Typography sx={{ display: "block", mb: 2 }}>
+        <Typography sx={{ mb: 2 }}>
           Thank you for submitting the form {name}.
         </Typography>
       </Stack>
@@ -77,7 +77,7 @@ const Guest = () => {
       <Typography sx={{ fontWeight: 700, fontSize: 32, mb: 2 }}>
         Welcome
       </Typography>
-      <Typography sx={{ display: "block", mb: 2 }}>
+      <Typography sx={{ mb: 2 }}>
         Please provide your full name and phone number.
       </Typography>
       <TextField
@@ -88,11 +88,11 @@ const Guest = () => {
           setName(e.target.value);
         }}
         variant="outlined"
-        sx={{ mb: 2 }}
+        sx={{ mb: nameError ? 1 : 2 }}
         error={nameError}
       />
       {nameError ? (
-        <Typography variant="error">
+        <Typography variant="error" sx={{ mb: 2, textAlign: "right" }}>
           *must be your first and last name
         </Typography>
       ) : null}
@@ -104,11 +104,13 @@ const Guest = () => {
           setPhone(e.target.value);
         }}
         variant="outlined"
-        sx={{ mb: 4 }}
+        sx={{ mb: phoneError ? 1 : 4 }}
         error={phoneError}
       />
       {phoneError ? (
-        <Typography variant="error">*numbers only (ex. 1231231234)</Typography>
+        <Typography variant="error" sx={{ mb: 4, textAlign: "right" }}>
+          *numbers only (ex. 1231231234)
+        </Typography>
       ) : null}
       <Button
         variant="contained"
