@@ -48,7 +48,7 @@ RSpec.describe Api::V1::GuestsController, type: :controller do
     end
 
     it 'rejects a guest without a phone number comprised entirely of numbers' do
-      post :create, params: { guest: { name: "Elwood Blues", phone: "phonephone" } }, as: :json
+      post :create, params: { guest: { name: "Elwood Blues", phone: "555-634-578" } }, as: :json
       expect(response.status).to eq(400)
       errors = JSON.parse(response.body)["errors"]
       expect(errors["phone"]).to eq [ "Phone is invalid" ]

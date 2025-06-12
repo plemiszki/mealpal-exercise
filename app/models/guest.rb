@@ -1,7 +1,7 @@
 class Guest < ApplicationRecord
 
   validates :name, presence: true
-  validates :phone, presence: true, length: { minimum: 10, maximum: 11 }, format: { with: /\d+/ }
+  validates :phone, presence: true, length: { minimum: 10, maximum: 11 }, format: { with: /\A\d+\z/ }
 
   validate :name_at_least_two_words
 

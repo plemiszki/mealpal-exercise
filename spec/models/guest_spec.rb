@@ -39,7 +39,7 @@ RSpec.describe Guest do
 
   it 'requires a phone number of numbers only' do
     expect do
-      Guest.create!(name: "Elwood Blues", phone: "phone")
+      Guest.create!(name: "Elwood Blues", phone: "555-634-578")
     end.to raise_error(ActiveRecord::RecordInvalid)
   end
 end
